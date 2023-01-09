@@ -31,6 +31,7 @@ def play_song(song_id):
         print(f'No song found for ID {song_id}')
         return jsonify({'success': False, 'song_id': song_id})
 
+    print(f'Playing song with ID {song_id}')
     cmd = ' '.join(play_cmd + [f'stream_file="{full_path}"'])
     app.now_playing = subprocess.Popen(cmd, shell=True)
 
