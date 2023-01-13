@@ -1,0 +1,32 @@
+#!/volume1/homes/admin/musicbox/venv/bin/python3
+
+import asyncio
+import sys
+
+import pyatv
+from pyatv.interface import Playing, PushListener
+
+LOOP = asyncio.get_event_loop()
+
+
+async def stream(
+    address: str, filename: str, loop: asyncio.AbstractEventLoop
+):
+    atvs = await pyatv.scan(loop, hosts=[address], timeout=5)
+
+    if not atvs:
+        return
+
+    conf = atvs[0]
+
+    atv = await pyatv.connect(conf, loop)
+
+    try:
+        await atv.stream.stream_file(filename)
+        await asyncio.sleep(1)
+    finally:
+        atv.close()
+
+
+if __name__ == "__main__":
+    LOOP.run_until_complete(stream(sys.argv[1], sys.argv[2], LOOP))
