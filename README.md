@@ -44,9 +44,10 @@ there.
 
 The `musicbox-server.py` script is a simple [Flask](
 https://flask.palletsprojects.com/) web service, and relies upon the [PyATV 
-library] to stream music to the HomePod. You'll need to install both into your
-Python environment, change the `AIRPLAY_ID` in the script to point to the IP of
-your target HomePod, and then run the service on the port of your choosing:
+library](https://pyatv.dev/) to stream music to the HomePod. You'll need to
+install both into your Python environment, change the `AIRPLAY_ID` in the script
+to point to the IP of your target HomePod, and then run the service on the port
+of your choosing:
 
 ```sh
 $ export FLASK_APP=musicbox-server.py
